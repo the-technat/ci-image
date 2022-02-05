@@ -13,7 +13,7 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
   apt install terraform -y
 
 # Install gitlab-terraform wrapper script
-RUN curl -o /usr/bin/gitlab-terraform https://gitlab.com/gitlab-org/terraform-images/-/raw/master/src/bin/gitlab-terraform.sh
+RUN curl --silent -o /usr/bin/gitlab-terraform https://gitlab.com/gitlab-org/terraform-images/-/raw/master/src/bin/gitlab-terraform.sh
 RUN chmod +x /usr/bin/gitlab-terraform
 
 # Install ansible
