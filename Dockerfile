@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install basic tooling
 RUN apt update && \
-  apt install curl wget jq git ssh gnupg software-properties-common python3-pip -y --no-install-recommends
+  apt install curl wget jq git ssh ca-certificates apt-transport-https gnupg software-properties-common python3-pip -y --no-install-recommends
 
 # Install terraform
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
@@ -21,7 +21,13 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
 RUN chmod 700 get_helm.sh && ./get_helm.sh 
 
 # Install ansible
-RUN pip install ansible virtualenv ansible-lint --no-color
+RUN pip install ansible virtualenv ansible-lint kubernetes pyyaml jsonpatch --no-color
+
+# Install kubectl
+RUN curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg && \
+  echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list && \
+  apt update && \
+  apt install -y kubectl
 
 ENTRYPOINT []
 
