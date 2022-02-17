@@ -17,7 +17,7 @@ RUN curl --silent -o /usr/bin/gitlab-terraform https://gitlab.com/gitlab-org/ter
 RUN chmod +x /usr/bin/gitlab-terraform
 
 # Install ansible
-RUN pip install ansible virtualenv --no-color
+RUN pip install ansible virtualenv ansible-lint --no-color
 
 ENTRYPOINT []
 
