@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install basic tooling
 RUN apt update && \
-  apt install curl wget jq git ssh ca-certificates apt-transport-https gnupg software-properties-common python3-pip -y --no-install-recommends
+  apt install curl wget cowsay sl jq git ssh ca-certificates apt-transport-https gnupg software-properties-common python3-pip -y --no-install-recommends
 
 # Install terraform
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
