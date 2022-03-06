@@ -6,11 +6,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
   apt install curl wget cowsay sl jq git ssh ca-certificates apt-transport-https gnupg software-properties-common python3-venv python3-pip -y --no-install-recommends
 
-# Install terraform
+# Install packer & terraform
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
   apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
   apt update && \
-  apt install terraform -y
+  apt install terraform packer -y
 
 # Install gitlab-terraform wrapper script
 RUN curl --silent -o /usr/bin/gitlab-terraform https://gitlab.com/gitlab-org/terraform-images/-/raw/master/src/bin/gitlab-terraform.sh
